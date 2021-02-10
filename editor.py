@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import  filedialog,Text,scrolledtext,colorchooser
 from os import path
+from sys import platform
 
 class Editor:
 
@@ -21,7 +22,10 @@ class Editor:
 
         self.master.geometry("1000x600")
         self.master.title("Text Editor - " + self.filename)
-        self.master.iconbitmap('C:\\Users\\Alexandros\\Desktop\\Alex Python Related\\textEdditor\\window_icon.ico')
+        if platform == "linux" or platform == "linux2":
+            self.master.iconbitmap('@window_icon.xbm')
+        elif platform == "win32":
+            self.master.iconbitmap('window_icon.ico')
         self.master.grid_rowconfigure(0, weight=1)
         self.master.grid_columnconfigure(0, weight=1)
 
@@ -65,7 +69,7 @@ class Editor:
         pref_win = Tk()
         pref_win.resizable(False, False)
         pref_win.title("Preferences")
-        pref_win.iconbitmap('C:\\Users\\Alexandros\\Desktop\\Alex Python Related\\textEdditor\\window_icon.ico')
+        pref_win.iconbitmap('window_icon.ico')
 
         fonts = ["Roboto","Arial", "Calibri","Impact","Verdana"]
         font_size = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,20,22,23,24,25,26,27,28,29,30]
