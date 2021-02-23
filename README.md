@@ -1,6 +1,6 @@
 # Text Editor:pencil2:
 #### **Overview**
-This is a simple text editor written in Python3 using the tkinter module. For now it only works in Windows and it is possible to open,edit and save text files only.
+This is a simple text editor written in Python3 using the tkinter module. It works on Windows and Linux paltforms and it is possible to open,edit and save text files only.
 
 #### **Features**
 * Open,edit and save .txt files. :triumph:
@@ -17,7 +17,7 @@ This is a simple text editor written in Python3 using the tkinter module. For no
 #### **Dependencies**
 * [Python](https://www.python.org/download/releases/3.0/) 3.7.4 or later
 * [tkinter](https://docs.python.org/3/library/tkinter.html)
-* Developed and tested on Microsoft Windows 10 and hasn't been tested on other platforms.
+* Tested on Windows and Linux platforms.
 
 #### **Installation**
 1. **git clone https://github.com/alexandros98/text-editor.git**

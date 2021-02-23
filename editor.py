@@ -12,6 +12,9 @@ class Editor:
         self.edditor_color = "#ffffff"
         self.cursor_color = "#000000"
         self.warnings = "None"
+        self.windowWidth = 1000
+        self.windowHeight = 600
+
         self.master = Tk()
         self.menu =  Menu(self.master)
         self.text = Text(self.master,wrap="none")
@@ -19,8 +22,13 @@ class Editor:
         self.scrollH =Scrollbar(self.master,orient="horizontal",command=self.text.xview)
         self.bottomInfos = Frame(self.master)
         self.lineInfo = Label(self.bottomInfos,text="Line:  Column: ",bg="#abc4ff")
+        self.master.geometry("%dx%d+%d+%d" % (self.windowWidth,self.windowHeight,int(self.master.winfo_screenwidth()/2 - self.windowWidth/2), int(self.master.winfo_screenheight()/2 - self.windowHeight/2)))
+        self.master.update()
+        self.windowposX = self.master.winfo_x()
+        self.windowposY = self.master.winfo_y()
+        #getting the main window x and y possition
+        self.master.after(1,self.trackWindow)
 
-        self.master.geometry("1000x600")
         self.master.title("Text Editor - " + self.filename)
         if platform == "linux" or platform == "linux2":
             self.master.iconbitmap('@window_icon.xbm')
@@ -62,11 +70,17 @@ class Editor:
         self.lineInfo.grid(row=0,column=0)
         self.text.after(1,self.refresh_bot_info)
 
+    def trackWindow(self):
+        self.windowposX = self.master.winfo_x()
+        self.windowposY = self.master.winfo_y()
+        self.master.after(500,self.trackWindow)
+
     def run(self):
         self.master.mainloop()
         
     def edditor_prefs(self):
         pref_win = Tk()
+        pref_win.geometry("+%d+%d" % (self.windowposX+70,self.windowposY+70))
         pref_win.resizable(False, False)
         pref_win.title("Preferences")
         if platform == "linux" or platform == "linux2":
@@ -160,7 +174,8 @@ class Editor:
 
     def color_prefs(self):
         master_color = Tk()
-        master_color.title("Edditor Colros")
+        master_color.geometry("+%d+%d" % (self.windowposX+70,self.windowposY+70))
+        master_color.title("Colros")
         master_color.resizable(False,False)
         if platform == "linux" or platform == "linux2":
             master_color.iconbitmap('@window_icon.xbm')
